@@ -15,10 +15,15 @@ public class AddressBookServiceTest {
     }
 
     @Test
-    public void testAddContact() {
+    public void testAddContact_addExistingContact_sizeNotChange() {
+        int currentSize = addressBookService.getContacts().size();
+
         Contact contact = new Contact("John", "Doe", "1234567890", "john@example.com");
         addressBookService.addContact(contact);
+        Assertions.assertEquals(currentSize, addressBookService.getContacts().size());
 
-        Assertions.assertEquals(1, addressBookService.getContacts().size());
+        contact = new Contact("Harry", "Xu", "1234567890", "john@example.com");
+        addressBookService.addContact(contact);
+        Assertions.assertEquals(++currentSize, addressBookService.getContacts().size());
     }
 }

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.List;
+import java.util.Set;
 
 @Controller
 public class AddressBookController {
@@ -16,7 +16,7 @@ public class AddressBookController {
 
     @GetMapping("/")
     public String showAddressBook(Model model) {
-        List<Contact> contacts = addressBookService.getContacts();
+        Set<Contact> contacts = addressBookService.getContacts();
         model.addAttribute("contacts", contacts);
         return "addressbook";
     }
